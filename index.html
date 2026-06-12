@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grimes Watch Floor</title>
+
+<!-- ===== Home-screen icon hooks (drop a 180/192/512 png in the repo) ===== -->
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Watch Floor">
+<meta name="theme-color" content="#0E1116">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0E1116;
+    --panel:#151B23;
+    --panel-hi:#1C242E;
+    --line:#27313D;
+    --phosphor:#E8B04B;      /* console chrome */
+    --text:#E6EDF3;
+    --dim:#8A94A3;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --display:'Space Grotesk',system-ui,sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--display);
+    min-height:100dvh;
+    padding:clamp(18px,4vw,40px);
+    /* faint phosphor grid + vignette */
+    background-image:
+      linear-gradient(rgba(232,176,75,.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(232,176,75,.025) 1px,transparent 1px),
+      radial-gradient(120% 80% at 50% -10%,rgba(232,176,75,.05),transparent 60%);
+    background-size:46px 46px,46px 46px,100% 100%;
+  }
+
+  .wrap{max-width:1080px;margin:0 auto}
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:16px;flex-wrap:wrap;
+    padding-bottom:18px;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .beacon{
+    width:11px;height:11px;border-radius:50%;
+    background:var(--phosphor);
+    box-shadow:0 0 0 0 rgba(232,176,75,.6);
+    animation:beacon 2.4s ease-out infinite;
+  }
+  @keyframes beacon{
+    0%{box-shadow:0 0 0 0 rgba(232,176,75,.55)}
+    70%{box-shadow:0 0 0 9px rgba(232,176,75,0)}
+    100%{box-shadow:0 0 0 0 rgba(232,176,75,0)}
+  }
+  .title{
+    font-weight:700;letter-spacing:.04em;line-height:1;
+    font-size:clamp(22px,4.4vw,34px);
+  }
+  .subtitle{
+    font-family:var(--mono);color:var(--dim);
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    margin-top:6px;
+  }
+  .clock{text-align:right;font-family:var(--mono)}
+  .clock .time{
+    color:var(--phosphor);font-size:clamp(20px,4vw,28px);
+    font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums;
+  }
+  .clock .date{
+    color:var(--dim);font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;margin-top:4px;
+  }
+
+  /* ---------- Grid ---------- */
+  .grid{
+    display:grid;gap:14px;margin-top:24px;
+    grid-template-columns:repeat(auto-fill,minmax(248px,1fr));
+  }
+
+  .station{
+    position:relative;display:flex;flex-direction:column;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 20px 16px;
+    text-decoration:none;color:inherit;
+    overflow:hidden;
+    transition:transform .18s ease,border-color .18s ease,background .18s ease;
+  }
+  /* accent rail */
+  .station::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--accent);
+    box-shadow:0 0 18px -2px var(--accent);
+  }
+  .station:hover,.station:focus-visible{
+    transform:translateY(-4px);
+    background:var(--panel-hi);
+    border-color:color-mix(in srgb,var(--accent) 55%,var(--line));
+    outline:none;
+  }
+  .station:focus-visible{box-shadow:0 0 0 2px var(--accent)}
+
+  .station .top{display:flex;justify-content:space-between;align-items:flex-start}
+  .ico{
+    width:42px;height:42px;color:var(--accent);
+    filter:drop-shadow(0 0 10px color-mix(in srgb,var(--accent) 40%,transparent));
+  }
+  .ico svg{width:100%;height:100%;display:block}
+
+  .num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    color:var(--dim);
+  }
+  .sig{display:flex;align-items:center;gap:6px;margin-top:6px}
+  .sig .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .sig .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--dim)}
+  @media (prefers-reduced-motion: no-preference){
+    .sig .dot{animation:flick 2s steps(1) infinite}
+  }
+  @keyframes flick{0%,82%{opacity:1}86%,92%{opacity:.25}}
+
+  .name{
+    font-weight:700;letter-spacing:.02em;line-height:1.05;
+    font-size:21px;margin-top:18px;
+  }
+  .tag{
+    color:var(--dim);font-size:13px;line-height:1.4;margin-top:7px;
+    flex:1;
+  }
+
+  .open{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:18px;padding-top:13px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .open .arrow{transition:transform .18s ease}
+  .station:hover .open .arrow{transform:translateX(4px)}
+
+  /* pending (no URL yet) state */
+  .station.pending{cursor:default}
+  .station.pending::before{opacity:.45}
+  .station.pending:hover{transform:none;background:var(--panel);border-color:var(--line)}
+  .station.pending .open{color:var(--dim)}
+  .station.pending .ico{opacity:.6}
+  .badge{
+    font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+    color:var(--ink);background:var(--dim);
+    padding:3px 7px;border-radius:5px;text-transform:uppercase;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:10px;
+    margin-top:26px;padding-top:16px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    color:var(--dim);text-transform:uppercase;
+  }
+  footer .online{display:flex;align-items:center;gap:7px}
+  footer .online .dot{width:7px;height:7px;border-radius:50%;background:#4FD1A5}
+
+  .notice{
+    grid-column:1/-1;
+    font-family:var(--mono);font-size:13px;line-height:1.65;
+    color:var(--dim);background:var(--panel);
+    border:1px dashed var(--line);border-radius:12px;
+    padding:26px;text-align:center;
+  }
+
+  /* tiles suppress the native long-press callout so the share menu takes over */
+  .station{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+
+  .menu{
+    position:fixed;z-index:60;min-width:198px;max-width:284px;
+    background:var(--panel-hi);border:1px solid var(--line);
+    border-radius:12px;padding:6px;
+    box-shadow:0 16px 44px -10px rgba(0,0,0,.75);
+    opacity:0;transform:translateY(-4px);pointer-events:none;
+    transition:opacity .12s ease,transform .12s ease;
+  }
+  .menu.open{opacity:1;transform:none;pointer-events:auto}
+  .menu .mhead{
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;padding:8px 10px 7px;margin-bottom:4px;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .menu button{
+    display:flex;align-items:center;gap:11px;width:100%;text-align:left;
+    background:none;border:none;border-radius:8px;cursor:pointer;
+    color:var(--text);font-family:var(--mono);font-size:12px;letter-spacing:.03em;
+    padding:10px;
+  }
+  .menu button:hover,.menu button:focus-visible{background:var(--panel);color:var(--phosphor);outline:none}
+  .menu button svg{width:15px;height:15px;flex:none;opacity:.85}
+
+  @media (max-width:520px){
+    header{flex-direction:column;align-items:flex-start}
+    .clock{text-align:left}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <span class="beacon" aria-hidden="true"></span>
+      <div>
+        <div class="title">GRIMES WATCH FLOOR</div>
+        <div class="subtitle">Personal Ops Console</div>
+      </div>
+    </div>
+    <div class="clock">
+      <div class="time" id="time">--:--:--</div>
+      <div class="date" id="date">———</div>
+    </div>
+  </header>
+
+  <main class="grid" id="grid" aria-label="Dashboard stations"><div class="notice">Syncing stations…</div></main>
+
+  <footer>
+    <span id="count">— stations</span>
+    <span class="cprt">© 2026 R. Grimes · All rights reserved</span>
+    <span class="online"><span class="dot"></span> Console online</span>
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   Stations load from stations.json (repo root). To add, reorder,
+   or remove an app, edit THAT file — you never touch this page.
+   Each entry: { "name", "tag", "url", "accent", "icon" }
+   icon = rocket | football | baseball | radar | ticket | fuel | grid
+   (any unknown icon falls back to the grid glyph)
+   ============================================================ */
+
+const ICONS = {
+  rocket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13c-1.5 1.2-2 4.5-2 6 1.5 0 4.8-.5 6-2"/><path d="M12 2c3.5 1.8 6 5.6 6 10l-3.5 3.5L9 16.5 5.5 13C5.5 8.6 8 4.8 12 2z"/><circle cx="12" cy="9" r="1.6"/><path d="M9 16.5 7 21M15 16.5 17 21"/></svg>',
+  football:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c8 1 13-4 14-14C11 4 6 9 5 19z"/><path d="M9 15l6-6M10.5 11.5l2 2M13 9l2 2"/></svg>',
+  baseball:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M6 5c2 2 3 4.5 3 7s-1 5-3 7M18 5c-2 2-3 4.5-3 7s1 5 3 7"/></svg>',
+  radar:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.6"/><path d="M12 12l7-4"/></svg>',
+  ticket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H6a2 2 0 0 1-2-2 2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>',
+  fuel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg>',
+  grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
+};
+
+const grid = document.getElementById('grid');
+const countEl = document.getElementById('count');
+
+/* ---- per-tile share menu: right-click (desktop) / long-press (touch) ---- */
+const menu = document.createElement('div');
+menu.className = 'menu'; menu.setAttribute('role','menu');
+document.body.appendChild(menu);
+let menuOpen = false;
+
+const MI = {
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>',
+  open:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>'
+};
+
+function openMenu(x,y,s){
+  if(!s.url) return;
+  const hasShare = !!navigator.share;
+  menu.innerHTML =
+    `<div class="mhead" style="color:${s.accent||'#E8B04B'}">${s.name||'Station'}</div>`+
+    (hasShare?`<button data-act="share">${MI.share}<span>Share…</span></button>`:'')+
+    `<button data-act="copy">${MI.copy}<span>Copy link</span></button>`+
+    `<button data-act="open">${MI.open}<span>Open in new tab</span></button>`;
+  menu.querySelectorAll('button').forEach(b=>{
+    b.onclick = async ()=>{
+      const act=b.dataset.act;
+      try{
+        if(act==='share'){ await navigator.share({title:s.name,url:s.url}); }
+        else if(act==='copy'){
+          await navigator.clipboard.writeText(s.url);
+          b.querySelector('span').textContent='Copied'; setTimeout(closeMenu,650); return;
+        }
+        else if(act==='open'){ window.open(s.url,'_blank','noopener'); }
+      }catch(_){}
+      closeMenu();
+    };
+  });
+  menu.style.left='0px'; menu.style.top='0px';
+  const r=menu.getBoundingClientRect(), pad=8;
+  menu.style.left=Math.max(pad,Math.min(x,window.innerWidth -r.width -pad))+'px';
+  menu.style.top =Math.max(pad,Math.min(y,window.innerHeight-r.height-pad))+'px';
+  menu.classList.add('open'); menuOpen=true;
+}
+function closeMenu(){ menu.classList.remove('open'); menuOpen=false; }
+
+window.addEventListener('click',e=>{ if(menuOpen && !menu.contains(e.target)) closeMenu(); });
+window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+window.addEventListener('scroll',()=>{ if(menuOpen) closeMenu(); },true);
+window.addEventListener('resize',()=>{ if(menuOpen) closeMenu(); });
+
+function tile(s,i){
+  const live = !!s.url;
+  const el = document.createElement(live ? 'a' : 'div');
+  el.className = 'station' + (live ? '' : ' pending');
+  el.style.setProperty('--accent', s.accent || '#E8B04B');
+  if(live) el.href = s.url;
+  const num = String(i+1).padStart(2,'0');
+  el.innerHTML = `
+    <div class="top">
+      <span class="ico">${ICONS[s.icon]||ICONS.grid}</span>
+      <div style="text-align:right">
+        <div class="num">STATION ${num}</div>
+        <div class="sig"><span class="dot"></span><span class="lbl">${live?'LIVE':'STANDBY'}</span></div>
+      </div>
+    </div>
+    <div class="name">${s.name||'Untitled'}</div>
+    <div class="tag">${s.tag||''}</div>
+    <div class="open">
+      <span>${live?'Open station':'Add url in stations.json'}</span>
+      ${live?'<span class="arrow">▸</span>':'<span class="badge">pending</span>'}
+    </div>`;
+
+  // share triggers
+  el.addEventListener('contextmenu', e=>{ if(!s.url) return; e.preventDefault(); openMenu(e.clientX,e.clientY,s); });
+  let lpTimer=null, suppressClick=false;
+  el.addEventListener('touchstart', e=>{
+    if(!s.url) return;
+    const t=e.touches[0];
+    lpTimer=setTimeout(()=>{ suppressClick=true; openMenu(t.clientX,t.clientY,s); }, 480);
+  }, {passive:true});
+  const cancelLP=()=>clearTimeout(lpTimer);
+  el.addEventListener('touchmove', cancelLP, {passive:true});
+  el.addEventListener('touchend', cancelLP);
+  el.addEventListener('click', e=>{ if(suppressClick){ e.preventDefault(); suppressClick=false; } });
+
+  return el;
+}
+
+function render(list){
+  grid.innerHTML = '';
+  list.forEach((s,i)=> grid.appendChild(tile(s,i)));
+  const liveN = list.filter(s=>s.url).length;
+  countEl.textContent = liveN + ' / ' + list.length + ' stations live';
+}
+
+function showNotice(msg){
+  grid.innerHTML = `<div class="notice">${msg}</div>`;
+  countEl.textContent = 'stations not loaded';
+}
+
+(async function loadStations(){
+  try{
+    const res = await fetch('stations.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    const list = Array.isArray(data) ? data
+               : (data && Array.isArray(data.stations) ? data.stations : null);
+    if(!list || list.length===0){
+      showNotice('stations.json loaded but holds no stations. Add at least one entry under "stations" to populate the floor.');
+      return;
+    }
+    render(list);
+  }catch(err){
+    showNotice('Couldn’t load stations.json. It must sit in the repo root beside index.html and be valid JSON. ('+err.message+')');
+  }
+})();
+
+/* Central-time console clock (correct regardless of device tz) */
+function tick(){
+  const now = new Date();
+  const t = new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour12:false,
+            hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(now);
+  const d = new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',
+            weekday:'short',year:'numeric',month:'short',day:'2-digit'}).format(now);
+  document.getElementById('time').textContent = t + ' CT';
+  document.getElementById('date').textContent = d;
+}
+tick(); setInterval(tick,1000);
+</script>
+</body>
+</html>
