@@ -66,6 +66,13 @@
       "url": "https://rodmann4210-bot.github.io/world_cup_watch_2026/",
       "accent": "#F2C53D",
       "icon": "trophy"
+    },
+    {
+      "name": "St. Louis City Watch",
+      "tag": "St. Louis City SC — MLS fixtures, Western Conference table, squad and form.",
+      "url": "https://rodmann4210-bot.github.io/stl_city/",
+      "accent": "#E0314A",
+      "icon": "soccerball"
     }
   ]
 }
