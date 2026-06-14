@@ -73,6 +73,13 @@
       "url": "https://rodmann4210-bot.github.io/stl_city/",
       "accent": "#E0314A",
       "icon": "soccerball"
+    },
+    {
+      "name": "Gibbs Watch",
+      "tag": "Joe Gibbs Racing — NASCAR Cup lineup, points and the 2026 schedule with live race countdown.",
+      "url": "https://rodmann4210-bot.github.io/gibbs_watch/",
+      "accent": "#FF7A29",
+      "icon": "checkered"
     }
   ]
 }
