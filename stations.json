@@ -80,6 +80,13 @@
       "url": "https://rodmann4210-bot.github.io/gibbs_watch/",
       "accent": "#FF7A29",
       "icon": "checkered"
+    },
+    {
+      "name": "Road Watch",
+      "tag": "Trip planner — type start + destination for route, drive time, and a hotels/food/entertainment/sports guide.",
+      "url": "https://rodmann4210-bot.github.io/road_watch/",
+      "accent": "#34C77A",
+      "icon": "compass"
     }
   ]
 }
