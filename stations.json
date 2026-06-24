@@ -87,6 +87,13 @@
       "url": "https://rodmann4210-bot.github.io/road_watch/",
       "accent": "#34C77A",
       "icon": "compass"
+    },
+    {
+      "name": "NASCAR Watch",
+      "tag": "JGR Cup Series dashboard — #11 #19 #20 #54 spotlight, standings, race results and full 2026 schedule.",
+      "url": "https://rodmann4210-bot.github.io/nascar_watch/",
+      "accent": "#CC0000",
+      "icon": "checkered"
     }
   ]
 }
