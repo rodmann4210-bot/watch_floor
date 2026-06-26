@@ -7,13 +7,23 @@
       "3. Save, upload stations.json to the watch_floor repo, hard-refresh (Ctrl+Shift+R).",
       "Order here = order on the floor (top-left first). Leave url as \"\" to show an app as 'pending' instead of a live link."
     ],
-    "icon_keys": ["rocket", "football", "baseball", "radar", "ticket", "fuel", "trophy", "soccerball", "grid"],
+    "icon_keys": [
+      "rocket",
+      "football",
+      "baseball",
+      "radar",
+      "ticket",
+      "fuel",
+      "trophy",
+      "soccerball",
+      "grid"
+    ],
     "note": "An unknown icon falls back to the 'grid' glyph, so a new app always shows even before it gets a custom mark."
   },
   "stations": [
     {
       "name": "Launch Watch",
-      "tag": "Live rocket launch tracker — countdowns, weather, recent history.",
+      "tag": "Live rocket launch tracker \u2014 countdowns, weather, recent history.",
       "url": "https://rodmann4210-bot.github.io/launch_watch/",
       "accent": "#FF6B35",
       "icon": "rocket"
@@ -55,45 +65,52 @@
     },
     {
       "name": "Detour",
-      "tag": "Worth-the-stop gas calculator — is the cheap fuel worth the off-route miles?",
+      "tag": "Worth-the-stop gas calculator \u2014 is the cheap fuel worth the off-route miles?",
       "url": "https://rodmann4210-bot.github.io/Detour/",
       "accent": "#3FB97A",
       "icon": "fuel"
     },
     {
       "name": "World Cup Watch",
-      "tag": "FIFA World Cup 2026 — flip between Team USA focus and the full tournament.",
+      "tag": "FIFA World Cup 2026 \u2014 flip between Team USA focus and the full tournament.",
       "url": "https://rodmann4210-bot.github.io/world_cup_watch_2026/",
       "accent": "#F2C53D",
       "icon": "trophy"
     },
     {
       "name": "St. Louis City Watch",
-      "tag": "St. Louis City SC — MLS fixtures, Western Conference table, squad and form.",
+      "tag": "St. Louis City SC \u2014 MLS fixtures, Western Conference table, squad and form.",
       "url": "https://rodmann4210-bot.github.io/stl_city/",
       "accent": "#E0314A",
       "icon": "soccerball"
     },
     {
       "name": "Gibbs Watch",
-      "tag": "Joe Gibbs Racing — NASCAR Cup lineup, points and the 2026 schedule with live race countdown.",
+      "tag": "Joe Gibbs Racing \u2014 NASCAR Cup lineup, points and the 2026 schedule with live race countdown.",
       "url": "https://rodmann4210-bot.github.io/gibbs_watch/",
       "accent": "#FF7A29",
       "icon": "checkered"
     },
     {
       "name": "Road Watch",
-      "tag": "Trip planner — type start + destination for route, drive time, and a hotels/food/entertainment/sports guide.",
+      "tag": "Trip planner \u2014 type start + destination for route, drive time, and a hotels/food/entertainment/sports guide.",
       "url": "https://rodmann4210-bot.github.io/road_watch/",
       "accent": "#34C77A",
       "icon": "compass"
     },
     {
       "name": "NASCAR Watch",
-      "tag": "JGR Cup Series dashboard — #11 #19 #20 #54 spotlight, standings, race results and full 2026 schedule.",
+      "tag": "JGR Cup Series dashboard \u2014 #11 #19 #20 #54 spotlight, standings, race results and full 2026 schedule.",
       "url": "https://rodmann4210-bot.github.io/nascar_watch/",
       "accent": "#CC0000",
       "icon": "checkered"
+    },
+    {
+      "name": "Sports AI Hub",
+      "tag": "Ask the stats \u2014 MLB standings, leaders, scores and AI answers across all your teams.",
+      "url": "https://rodmann4210-bot.github.io/-sports_ai_hub/",
+      "accent": "#2980d4",
+      "icon": "brain"
     }
   ]
 }
