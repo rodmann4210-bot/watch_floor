@@ -1,7 +1,127 @@
 {
-  "name": "Lyric Vault",
-  "tag": "Public-domain lyric archive \u2014 folk, blues, spirituals, and songbook standards, searchable and sourced.",
-  "url": "https://rodmann4210-bot.github.io/lyric-vault/",
-  "accent": "#d9a441",
-  "icon": "note"
+  "_readme": {
+    "what": "This file is the app list for Watch Floor. Edit it to add, reorder, or remove apps. index.html never needs to change.",
+    "add_an_app": [
+      "1. Copy any one block from the 'stations' list below.",
+      "2. Edit name, tag, url, accent (hex color), and icon.",
+      "3. Save, upload stations.json to the watch_floor repo, hard-refresh (Ctrl+Shift+R).",
+      "Order here = order on the floor (top-left first). Leave url as \"\" to show an app as 'pending' instead of a live link."
+    ],
+    "icon_keys": [
+      "rocket",
+      "football",
+      "baseball",
+      "radar",
+      "ticket",
+      "fuel",
+      "trophy",
+      "soccerball",
+      "checkered",
+      "compass",
+      "brain",
+      "note",
+      "grid"
+    ],
+    "note": "An unknown icon falls back to the 'grid' glyph, so a new app always shows even before it gets a custom mark."
+  },
+  "stations": [
+    {
+      "name": "Launch Watch",
+      "tag": "Live rocket launch tracker \u2014 countdowns, weather, recent history.",
+      "url": "https://rodmann4210-bot.github.io/launch_watch/",
+      "accent": "#FF6B35",
+      "icon": "rocket"
+    },
+    {
+      "name": "Commanders Watch",
+      "tag": "Game countdown, roster, division standings, Film Room.",
+      "url": "https://rodmann4210-bot.github.io/commanders_watch/",
+      "accent": "#FFB612",
+      "icon": "football"
+    },
+    {
+      "name": "Chiefs Watch",
+      "tag": "Game countdown, roster, division standings, Film Room.",
+      "url": "https://rodmann4210-bot.github.io/chiefs_watch/",
+      "accent": "#E31837",
+      "icon": "football"
+    },
+    {
+      "name": "Cardinals Watch",
+      "tag": "Schedule, standings with games-back, FanGraphs Film Room.",
+      "url": "https://rodmann4210-bot.github.io/cardinals_watch/",
+      "accent": "#C8102E",
+      "icon": "baseball"
+    },
+    {
+      "name": "DC Sentinel",
+      "tag": "Autonomous OSINT early-warning console for Washington DC.",
+      "url": "https://dc-sentinel.vercel.app/",
+      "accent": "#3FD0C9",
+      "icon": "radar"
+    },
+    {
+      "name": "VetTix Digest",
+      "tag": "Daily event digest with deep links, calendar and spreadsheet.",
+      "url": "https://script.google.com/macros/s/AKfycbwduZs2tWwg3UYsj8xShvKb0qQmXNqt3TOhecZr09RcEpTRfziT2DbzZ-k8Zzr_3RRG/exec",
+      "accent": "#8B7CF6",
+      "icon": "ticket"
+    },
+    {
+      "name": "Detour",
+      "tag": "Worth-the-stop gas calculator \u2014 is the cheap fuel worth the off-route miles?",
+      "url": "https://rodmann4210-bot.github.io/Detour/",
+      "accent": "#3FB97A",
+      "icon": "fuel"
+    },
+    {
+      "name": "World Cup Watch",
+      "tag": "FIFA World Cup 2026 \u2014 flip between Team USA focus and the full tournament.",
+      "url": "https://rodmann4210-bot.github.io/world_cup_watch_2026/",
+      "accent": "#F2C53D",
+      "icon": "trophy"
+    },
+    {
+      "name": "St. Louis City Watch",
+      "tag": "St. Louis City SC \u2014 MLS fixtures, Western Conference table, squad and form.",
+      "url": "https://rodmann4210-bot.github.io/stl_city/",
+      "accent": "#E0314A",
+      "icon": "soccerball"
+    },
+    {
+      "name": "Gibbs Watch",
+      "tag": "Joe Gibbs Racing \u2014 NASCAR Cup lineup, points and the 2026 schedule with live race countdown.",
+      "url": "https://rodmann4210-bot.github.io/gibbs_watch/",
+      "accent": "#FF7A29",
+      "icon": "checkered"
+    },
+    {
+      "name": "Road Watch",
+      "tag": "Trip planner \u2014 type start + destination for route, drive time, and a hotels/food/entertainment/sports guide.",
+      "url": "https://rodmann4210-bot.github.io/road_watch/",
+      "accent": "#34C77A",
+      "icon": "compass"
+    },
+    {
+      "name": "NASCAR Watch",
+      "tag": "JGR Cup Series dashboard \u2014 #11 #19 #20 #54 spotlight, standings, race results and full 2026 schedule.",
+      "url": "https://rodmann4210-bot.github.io/nascar_watch/",
+      "accent": "#CC0000",
+      "icon": "checkered"
+    },
+    {
+      "name": "Sports AI Hub",
+      "tag": "Ask the stats \u2014 MLB standings, leaders, scores and AI answers across all your teams.",
+      "url": "https://rodmann4210-bot.github.io/-sports_ai_hub/",
+      "accent": "#2980d4",
+      "icon": "brain"
+    },
+    {
+      "name": "Lyric Vault",
+      "tag": "Public-domain lyric archive \u2014 folk, blues, spirituals, and songbook standards, searchable and sourced.",
+      "url": "https://rodmann4210-bot.github.io/lyric-vault/",
+      "accent": "#d9a441",
+      "icon": "note"
+    }
+  ]
 }
